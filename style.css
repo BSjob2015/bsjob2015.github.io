@@ -41,45 +41,80 @@ a{color:inherit;text-decoration:none;}
   border-bottom:1px solid var(--steel-line);
   z-index:50;
 }
+
 .nav-row{
   display:flex;
-  align-items:flex-start;
+  align-items:center;            /* 메뉴와 중앙 브랜드 상하 정렬 */
   justify-content:space-between;
-  max-width:var(--content-w); /* 본문 폭(740px)과 동일하게 설정 */
+  max-width:var(--content-w);    /* 본문 폭(740px)과 정확히 동일 */
   margin:0 auto;
-  padding:20px 28px 24px;
+  padding:16px 28px;             /* 본문 wrap의 좌우 padding(28px)과 동일하게 맞춤 */
 }
-.nav-row ul{display:flex;list-style:none;font-size:14px;color:var(--ink);flex-wrap:wrap;}
-.nav-left ul li{margin:4px 22px 0 0;}
-.nav-right ul li{margin:4px 0 0 22px;}
+
+.nav-row ul{
+  display:flex;
+  list-style:none;
+  font-size:14px;
+  color:var(--ink);
+  flex-wrap:nowrap;              /* pc버튼 줄바꿈 방지 */
+}
+
+/* 좌우 메뉴 간격 조정 */
+.nav-left ul li{ margin:0 18px 0 0; }
+.nav-right ul li{ margin:0 0 0 18px; }
+
 .nav-row a{
-  font-family:var(--font-main); /* 메뉴 글자체 통일 */
+  font-family:var(--font-main);
   color:var(--ink);
   opacity:.8;
   text-decoration:none;
   transition:opacity .15s,color .15s;
+  white-space:nowrap;
 }
 .nav-row a:hover{opacity:1;color:var(--amber-deep);}
 .nav-row a.active{opacity:1;color:var(--amber-deep);font-weight:700;}
-.brand-spacer{width:210px;flex:none;}
-.wave-wrap{position:relative;line-height:0;margin-top:-2px;}
-.wave-wrap svg{display:block;width:100%;height:48px;fill:#FFFFFF;}
+
+/* 중앙 브랜드 탭 레이아웃 보정 */
+.brand-spacer{
+  width:160px; /* 기존 210px에서 본문 폭(740px)에 맞추어 축소 */
+  flex:none;
+}
+
 .brand-tab{
-  position:absolute;top:0;left:50%;transform:translateX(-50%);
-  width:170px;background:#FFFFFF;border:1px solid var(--steel-line);border-top:none;border-radius:0 0 18px 18px;
-  padding:18px 10px 14px;text-align:center;z-index:5;
+  position:absolute;
+  top:0;
+  left:50%;
+  transform:translateX(-50%);
+  width:150px;
+  background:#FFFFFF;
+  border:1px solid var(--steel-line);
+  border-top:none;
+  border-radius:0 0 14px 14px;
+  padding:12px 8px 10px;
+  text-align:center;
+  z-index:5;
   box-shadow:0 4px 12px rgba(0,0,0,.06);
 }
+
 .brand-tab .bn{
-  font-family:var(--font-main); /* 브랜드 로고명도 헤더 스타일과 일치 */
+  font-family:var(--font-main);
   font-weight:700;
-  font-size:15px;
+  font-size:14px;
   color:var(--ink);
-  line-height:1.32;
+  line-height:1.25;
   display:block;
   letter-spacing:-.01em;
 }
-.brand-tab .bs{display:inline-block;margin-top:7px;font-size:10px;color:var(--amber-deep);letter-spacing:.08em;font-weight:700;}
+.brand-tab .bs{
+  display:inline-block;
+  margin-top:4px;
+  font-size:9.5px;
+  color:var(--amber-deep);
+  letter-spacing:.06em;
+  font-weight:700;
+}
+
+/* 반응형 모바일 처리 */
 @media (max-width:760px){
   .header-shell{display:flex;flex-direction:column;}
   .wave-wrap{display:none;}
