@@ -46,9 +46,9 @@ a{color:inherit;text-decoration:none;}
   display:flex;
   align-items:center;            /* 메뉴와 중앙 브랜드 상하 정렬 */
   justify-content:space-between;
-  max-width:var(--content-w);    /* 본문 폭(740px)과 정확히 동일 */
+  max-width:calc(var(--content-w) - 56px); /* 본문 실제 텍스트 폭(684px)에 정확히 맞춤 */
   margin:0 auto;
-  padding:16px 28px;             /* 본문 wrap의 좌우 padding(28px)과 동일하게 맞춤 */
+  padding:16px 0;                          /* 좌우 패딩을 제거하여 양끝 라인 일치 */
 }
 
 .nav-row ul{
