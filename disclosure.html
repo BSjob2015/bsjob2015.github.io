@@ -4,12 +4,43 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>공익 공시 | 부산일자리창출사회적협동조합</title>
-<meta name="description" content="부산일자리창출사회적협동조합 공익 공시 페이지 - 기부금 모금액 및 활용실적을 공개합니다.">
+<meta name="description" content="부산일자리창출사회적협동조합 공익 공시 페이지 - 연간 기부금 모금액 및 활용실적을 공개합니다.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@500;700;900&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
+<style>
+/* 공익 공시: 연간 기부금 공시 게시판 (style.css 색상 변수 사용) */
+.board{border:1px solid var(--steel-line);background:var(--paper);border-radius:var(--radius);overflow:hidden;}
+.board-head{
+  background:var(--panel);border-bottom:1px solid var(--steel-line);
+  padding:20px 26px;font-family:'Noto Serif KR',serif;font-weight:700;
+  font-size:16.5px;color:var(--ink);line-height:1.45;letter-spacing:-.01em;
+}
+.board-cols{
+  display:grid;grid-template-columns:70px 1fr 120px;list-style:none;
+  background:var(--paper);border-bottom:1px solid var(--steel-line);
+  font-size:12px;font-weight:700;color:var(--steel);letter-spacing:.04em;text-transform:uppercase;
+}
+.board-cols li{padding:12px 18px;}
+.board-cols .c-title{border-left:1px solid var(--steel-line);border-right:1px solid var(--steel-line);}
+.board-cols .c-date{text-align:center;}
+.board-empty{padding:54px 26px;text-align:center;}
+.board-empty .tag{
+  display:inline-block;font-size:12.5px;font-weight:700;letter-spacing:.02em;
+  color:var(--steel);background:var(--panel);border:1px solid var(--steel-line);
+  padding:6px 15px;border-radius:var(--radius);margin-bottom:18px;
+}
+.board-empty p{font-size:14.5px;color:var(--steel);line-height:1.85;max-width:480px;margin:0 auto;}
+.board-note{margin-top:16px;font-size:12.5px;color:var(--steel);line-height:1.7;}
+@media (max-width:600px){
+  .board-head{padding:18px 20px;font-size:15px;}
+  .board-cols{grid-template-columns:52px 1fr 92px;}
+  .board-cols li{padding:11px 14px;font-size:11px;}
+  .board-empty{padding:44px 20px;}
+}
+</style>
 </head>
-<body>
+<body id="top">
 
 <header class="header-shell">
   <div class="nav-row">
@@ -21,19 +52,18 @@
     <div class="brand-spacer"></div>
     <nav class="nav-right"><ul>
       <li><a href="articles.html">조합정관</a></li>
-      <li><a href="#top" class="active">공익 공시</a></li>
+      <li><a href="disclosure.html" class="active">공익 공시</a></li>
       <li><a href="index.html#report">신고 안내</a></li>
     </ul></nav>
   </div>
   <div class="wave-wrap">
-    <svg viewBox="0 0 1440 64" preserveAspectRatio="none">
-      <path d="M0,0 L1440,0 L1440,9 C1150,9 1120,58 720,58 C320,58 290,9 0,9 Z" fill="var(--navy-deep)"/>
-      <path d="M0,9 C290,9 320,58 720,58 C1120,58 1150,9 1440,9" fill="none" stroke="var(--amber)" stroke-width="3"/>
+    <svg viewBox="0 0 1440 48" preserveAspectRatio="none">
+      <path d="M0,0 L1440,0 L1440,8 C1150,8 1120,44 720,44 C320,44 290,8 0,8 Z"/>
     </svg>
-  </div>
-  <div class="brand-tab">
-    <span class="bn">부산일자리창출<br>사회적협동조합</span>
-    <span class="bs">SINCE 2015</span>
+    <div class="brand-tab">
+      <span class="bn">부산일자리창출<br>사회적협동조합</span>
+      <span class="bs">SINCE 2015</span>
+    </div>
   </div>
 </header>
 
@@ -51,26 +81,32 @@
   </div>
 </section>
 
-<section id="top">
-  <div class="wrap doc-body">
+<section>
+  <div class="wrap">
     <div class="section-head">
       <span class="eyebrow">Donation</span>
-      <h2>기부금 모금액 및 활용실적</h2>
-      <p>연도별 기부금 모금액과 활용실적입니다.</p>
+      <h2>연간 기부금 모금액 및 활용실적</h2>
+      <p>정관 제68조③에 따라 연도별 기부금 모금액과 활용실적을 공개합니다.</p>
     </div>
-    <table class="disclosure-table">
-      <thead>
-        <tr><th>연도</th><th>모금액</th><th>활용실적</th></tr>
-      </thead>
-      <tbody>
-        <tr><td>2026년</td><td>0원</td><td>해당 없음</td></tr>
-      </tbody>
-    </table>
-    <p class="empty-note">아직 모금된 기부금이 없습니다. 실적이 발생하는 즉시 이 페이지에 갱신하여 공개합니다.</p>
+
+    <div class="board">
+      <div class="board-head">부산일자리창출 사회적협동조합 연간 기부금 모금액 및 활용실적</div>
+      <ul class="board-cols">
+        <li class="c-no">번호</li>
+        <li class="c-title">제목</li>
+        <li class="c-date">등록일</li>
+      </ul>
+      <div class="board-empty">
+        <span class="tag">준비 중</span>
+        <p>현재 공개할 연간 기부금 모금액 및 활용실적이 없습니다.<br>실적이 발생하는 즉시 이 페이지를 통해 공개합니다.</p>
+      </div>
+    </div>
+
+    <p class="board-note">※ 연도별 명세서는 실적이 확정되는 대로 이 게시판에 순차적으로 등록됩니다.</p>
   </div>
 </section>
 
-<footer id="contact">
+<footer>
   <div class="wrap foot-inner">
     <div>
       <strong>부산일자리창출사회적협동조합</strong>
@@ -79,13 +115,12 @@
     </div>
     <div>
       <strong>문의</strong>
-      전화 <a href="tel:051-907-0700">051-907-0700</a><br>
-      이메일 <a href="mailto:urisolarbk@naver.com">urisolarbk@naver.com</a><br>
+      전화 051-907-0700 · 이메일 urisolarbk@naver.com<br>
       이사장 김재호
     </div>
   </div>
   <div class="wrap legal">
-    &copy; 2026 부산일자리창출사회적협동조합. 본 페이지는 정관 제68조③에 따라 기부금 모금액 및 활용실적을 공개합니다.
+    &copy; 2026 부산일자리창출사회적협동조합. 본 페이지는 정관 제58조(운영의 공개) 및 제68조③에 따라 기부금 모금액 및 활용실적을 공개합니다.
   </div>
 </footer>
 
