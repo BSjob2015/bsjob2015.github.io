@@ -114,6 +114,10 @@ a{color:inherit;text-decoration:none;}
   font-weight:700;
 }
 
+/* 헤더 하단 물결(amber 곡선) */
+.wave-wrap{position:relative;line-height:0;}
+.wave-wrap svg{display:block;width:100%;height:34px;}
+
 /* 반응형 모바일 처리 */
 @media (max-width:760px){
   .header-shell{display:flex;flex-direction:column;}
@@ -198,6 +202,12 @@ section.alt{background:var(--panel);}
 @media (max-width:640px){.info-card{grid-template-columns:1fr;}}
 .info-row dt{font-size:12px;color:var(--steel);letter-spacing:.06em;margin-bottom:4px;}
 .info-row dd{font-size:16px;font-weight:500;color:var(--ink);}
+
+/* ---------- 조합 소개: 서류 이미지 (index.html) ---------- */
+.doc-image-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:28px;}
+@media (max-width:640px){.doc-image-grid{grid-template-columns:1fr;}}
+.doc-image-box h3{font-size:15px;margin-bottom:10px;color:var(--ink);}
+.doc-image-box img{width:100%;height:auto;border:1px solid var(--steel-line);border-radius:var(--radius);display:block;}
 
 /* ---------- 사업 안내: 사업 카드 (index.html) ---------- */
 .biz-grid{
