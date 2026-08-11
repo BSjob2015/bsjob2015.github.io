@@ -162,5 +162,46 @@
   </div>
 </footer>
 
+<script>
+(function(){
+  var base = "부산일자리창출사회적협동조합";
+  // 앵커 섹션 id → 표시할 라벨
+  var labels = { about: "조합", business: "사업", report: "신고" };
+  var order = ["about", "business", "report"];
+
+  function setTitle(label){
+    document.title = label ? (label + " | " + base) : base;
+  }
+
+  // 메뉴 클릭 시 즉시 제목 변경
+  document.querySelectorAll('a[href^="#"]').forEach(function(a){
+    a.addEventListener('click', function(){
+      var id = a.getAttribute('href').slice(1);
+      if(labels[id]) setTitle(labels[id]);
+    });
+  });
+
+  // 스크롤 위치에 따라 제목 자동 변경
+  if('IntersectionObserver' in window){
+    var visible = {};
+    var observer = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        visible[e.target.id] = e.isIntersecting;
+      });
+      var found = null;
+      for(var i = 0; i < order.length; i++){
+        if(visible[order[i]]){ found = order[i]; break; }
+      }
+      setTitle(found ? labels[found] : null);
+    }, { rootMargin: "-45% 0px -45% 0px" });
+
+    order.forEach(function(id){
+      var el = document.getElementById(id);
+      if(el) observer.observe(el);
+    });
+  }
+})();
+</script>
+
 </body>
 </html>
