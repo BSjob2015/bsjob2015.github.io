@@ -20,7 +20,7 @@
 
   /* 상단 메뉴 글자 크기 (조합 소개 h2와 동일한 28px)
      ▶ 너무 크게 느껴지면 이 값만 22px, 20px 등으로 낮추면 전체가 함께 줄어듭니다. */
-  --nav-size: 28px;
+  --nav-size: 24px;
 }
 
 *{box-sizing:border-box;margin:0;padding:0;}
