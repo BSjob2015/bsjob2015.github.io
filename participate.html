@@ -39,14 +39,20 @@
 }
 .field .hint{display:block;font-size:12px;color:var(--steel);margin-top:6px;}
 
-/* 생년월일 3칸(년/월/일) */
-.birth-row{display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
-.birth-row input{width:auto;text-align:center;-moz-appearance:textfield;}
-.birth-row input::-webkit-outer-spin-button,
-.birth-row input::-webkit-inner-spin-button{-webkit-appearance:none;margin:0;}
-.birth-row #f-birth-y{flex:0 0 96px;}
-.birth-row #f-birth-m,.birth-row #f-birth-d{flex:0 0 68px;}
+/* 생년월일: 한 줄(년/월/일) + 달력 선택 */
+.birth-row{display:flex;align-items:center;gap:6px;flex-wrap:nowrap;position:relative;}
+.birth-row input[type="text"]{flex:none;min-width:0;text-align:center;padding:11px 6px;}
+.birth-row #f-birth-y{width:78px;}
+.birth-row #f-birth-m,.birth-row #f-birth-d{width:54px;}
 .birth-sep{font-size:14px;color:var(--steel);flex:none;}
+.birth-cal-btn{
+  flex:none;margin-left:4px;border:1px solid var(--steel-line);background:#fff;
+  border-radius:var(--radius);padding:9px 11px;font-size:15px;line-height:1;cursor:pointer;
+  transition:border-color .15s,background .15s;
+}
+.birth-cal-btn:hover{border-color:var(--amber);background:#FDF6E7;}
+.birth-cal-input{position:absolute;left:0;bottom:0;width:1px;height:1px;opacity:0;pointer-events:none;}
+@media (max-width:480px){ .birth-row{flex-wrap:wrap;} }
 
 .consent-box{
   border:1px solid var(--steel-line);border-left:3px solid var(--amber);
@@ -79,16 +85,16 @@
 
 .form-lead{font-size:15.5px;color:var(--ink);line-height:1.9;max-width:var(--content-w);margin-bottom:6px;}
 
-/* 조합비 납부 계좌 */
-.acct{
-  background:var(--panel);border:1px solid var(--steel-line);border-radius:var(--radius);
-  padding:30px 32px;max-width:var(--content-w);
+/* 조합비 납부 안내 (동의 아래, 작게) */
+.acct-mini{
+  margin-top:18px;background:var(--panel);border:1px solid var(--steel-line);
+  border-left:3px solid var(--amber);border-radius:0 var(--radius) var(--radius) 0;
+  padding:14px 18px;display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 12px;
 }
-.acct .acct-label{font-size:12px;color:var(--steel);letter-spacing:.06em;margin-bottom:8px;font-weight:700;}
-.acct .acct-num{font-family:'Noto Serif KR',serif;font-size:clamp(22px,4vw,28px);font-weight:900;color:var(--ink);letter-spacing:.01em;}
-.acct .acct-holder{margin-top:10px;font-size:14.5px;color:var(--steel);}
-.acct .acct-holder b{color:var(--ink);font-weight:700;}
-.acct-note{margin-top:16px;font-size:13px;color:var(--steel);line-height:1.7;max-width:var(--content-w);}
+.acct-mini-label{font-size:11.5px;font-weight:700;color:var(--steel);letter-spacing:.04em;}
+.acct-mini-num{font-family:'Noto Serif KR',serif;font-size:16px;font-weight:700;color:var(--ink);letter-spacing:.01em;}
+.acct-mini-holder{font-size:12.5px;color:var(--steel);}
+.acct-mini-note{flex-basis:100%;font-size:11.5px;color:var(--steel);margin-top:2px;line-height:1.6;}
 </style>
 </head>
 <body id="top">
@@ -154,14 +160,16 @@
       <div class="field">
         <label>생년월일<span class="req">*</span></label>
         <div class="birth-row">
-          <input type="text" id="f-birth-y" inputmode="numeric" placeholder="예: 1990" aria-label="생년(4자리)">
+          <input type="text" id="f-birth-y" inputmode="numeric" placeholder="1990" aria-label="생년(4자리)">
           <span class="birth-sep">년</span>
           <input type="text" id="f-birth-m" inputmode="numeric" placeholder="월" aria-label="월">
           <span class="birth-sep">월</span>
           <input type="text" id="f-birth-d" inputmode="numeric" placeholder="일" aria-label="일">
           <span class="birth-sep">일</span>
+          <button type="button" id="birthCalBtn" class="birth-cal-btn" title="달력에서 선택">📅</button>
+          <input type="date" id="f-birth-cal" class="birth-cal-input" tabindex="-1" aria-label="달력에서 생년월일 선택">
         </div>
-        <span class="hint">생년 4자리, 월 1~12, 일 1~31 숫자만 입력하세요.</span>
+        <span class="hint">직접 입력하거나 달력(📅)에서 선택할 수 있습니다.</span>
       </div>
 
       <div class="field">
@@ -194,30 +202,19 @@
         </div>
       </div>
 
+      <div class="acct-mini">
+        <span class="acct-mini-label">조합비 납부 계좌</span>
+        <span class="acct-mini-num">농협 301-0176-5805-01</span>
+        <span class="acct-mini-holder">예금주 부산일자리창출사회적협동조합</span>
+        <span class="acct-mini-note">※ 가입 신청 후 위 계좌로 조합비를 납부해 주세요. 입금자명은 신청자 본인 성명으로 기재해 주세요.</span>
+      </div>
+
       <div class="submit-row">
         <button type="button" class="btn btn-primary" id="submitBtn">가입 신청하기</button>
       </div>
 
       <div class="form-msg" id="formMsg"></div>
     </div>
-  </div>
-</section>
-
-<section class="alt">
-  <div class="wrap">
-    <div class="section-head">
-      <span class="eyebrow">Account</span>
-      <h2>조합비 납부 안내</h2>
-      <p>가입 신청 후 아래 계좌로 조합비를 납부해 주세요.</p>
-    </div>
-
-    <div class="acct">
-      <div class="acct-label">조합비 납부 계좌</div>
-      <div class="acct-num">농협 301-0176-5805-01</div>
-      <div class="acct-holder">예금주 · <b>부산일자리창출사회적협동조합</b></div>
-    </div>
-
-    <p class="acct-note">※ 입금자명은 신청자 본인 성명으로 기재해 주세요. 납부 확인 후 가입 절차를 안내해 드립니다. 문의 051-907-0700</p>
   </div>
 </section>
 
@@ -261,6 +258,23 @@ function digitsOnly(el, maxLen){
 digitsOnly(by, 4);
 digitsOnly(bm, 2);
 digitsOnly(bd, 2);
+
+// 달력 선택 → 년/월/일 칸 자동 채움
+const cal = document.getElementById("f-birth-cal");
+const calBtn = document.getElementById("birthCalBtn");
+calBtn.addEventListener("click", function(){
+  if (typeof cal.showPicker === "function"){
+    try { cal.showPicker(); return; } catch (e) {}
+  }
+  cal.focus(); cal.click();
+});
+cal.addEventListener("change", function(){
+  if(!cal.value) return;
+  const parts = cal.value.split("-"); // YYYY-MM-DD
+  by.value = parts[0];
+  bm.value = String(parseInt(parts[1], 10));
+  bd.value = String(parseInt(parts[2], 10));
+});
 
 function show(type, text){
   msg.className = "form-msg " + type;
